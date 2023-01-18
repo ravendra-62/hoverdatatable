@@ -1,0 +1,59 @@
+<template>
+    <lightning-card>
+        <table aria-multiselectable="true" class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols" role="grid">
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Account Name">Name</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Account Id">AccountId</div>    
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <template if:true={accData}>
+            <template  for:each={accData} for:item="data">
+                <tr class="slds-hint-parent" key={data.Id}>
+                    <th data-label="Account Name" scope="row">
+                        <div>
+                            <a href="#" tabindex="-1">{data.Name}</a>
+                        </div>
+                    </th>   
+                    <td data-label="Account Id" scope="row" data-id={data.Id} onmouseout={hideData} onmouseover={showData}>
+                        <div>{data.Id}<br/>
+                            <div style="display:none; position:absolute; opacity:0" class="ModelTooltip">
+                                <template if:true={contacts}>
+                                    <lightning-card>
+                                        <div style="height:auto; width: 800px;">
+                                        <section aria-describedby="dialog-body-id-112" aria-labelledby="dialog-heading-id-117" class="slds-popover slds-nubbin_left slds-popover_full-width" role="dialog">
+                                        <div class="slds-popover__body">
+                                            <div class="slds-media__body" style="height:auto; width:auto;">
+                                            <header class="slds-popover__header">
+                                            <h2 class="slds-text-heading_medium slds-hyphenate">Releted Contacts</h2>
+                                            </header>
+                                            <div class="slds-popover__body">
+                                            <lightning-datatable
+                                                                    key-field="Id"
+                                                                    data={contacts}
+                                                                    columns={columns}>
+                                            </lightning-datatable>
+                                            </div>
+                                            </div>
+                                            </div>
+                                        </section>
+                                        </div>  
+                                    </lightning-card>
+                                </template>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </template>
+            </tbody>
+        </table>
+    </lightning-card>
+</template>
+
+
